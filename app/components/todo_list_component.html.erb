@@ -1,10 +1,21 @@
-<h1><%= @todo_list.name %></h1>
-<ul>
-  <% todo_items.each do |todo_item| %>
-    <li><%= todo_item %></li>
+<%= render(Primer::Alpha::Stack.new) do %>
+  <h1 class="f2"><%= @todo_list.name %></h1>
+  <%= render(List.new) do |list| %>
+    <% todo_items.each do |todo_item| %>
+      <% list.with_item do %>
+        <%= todo_item %>
+      <% end %>
+    <% end %>
   <% end %>
-</ul>
-<%= form_with(model: [@todo_list, @todo_list.todo_items.build], rerender: :self) do |f| %>
-  <%= f.text_field :text %>
-  <%= f.submit "Add todo item" %>
+  <div style="width: 250px">
+    <%= form_with(model: [@todo_list, @todo_list.todo_items.build], rerender: :self) do |f| %>
+      <%= render(Primer::Alpha::Stack.new) do %>
+        <%= f.label :text %>
+        <%= f.text_field :text, class: "FormControl-input FormControl-medium" %>
+        <div>
+          <%= f.submit "Add todo item", class: "Button Button--primary" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>

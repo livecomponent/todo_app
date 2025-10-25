@@ -1,2 +1,27 @@
 <h1>Todo Lists</h1>
-<%= link_to "New Todo List", new_todo_list_path %>
+<% if @todo_lists.empty? %>
+  No todo lists to show yet
+<% else %>
+  <%= render(List.new) do |list| %>
+    <% @todo_lists.each do |todo_list| %>
+      <% list.with_item do %>
+        <%= render(Primer::Alpha::Stack.new(direction: :horizontal, align: :center)) do %>
+          <%= todo_list.name %>
+          <%= render(Primer::Alpha::Stack.new(gap: :condensed, direction: :horizontal, justify: :end, style: "flex-grow: 1")) do %>
+            <%= render(
+              Primer::Beta::Button.new(
+                tag: :a,
+                href: todo_list_path(todo_list.id),
+                aria: { label: "View #{todo_list.name}" }
+              )
+            ) do %>
+              Edit
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= button_to "New Todo List", new_todo_list_path, method: :get, class: "Button Button--primary" %>

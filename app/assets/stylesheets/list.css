@@ -1,0 +1,65 @@
+.List {
+  margin-bottom: var(--stack-gap-normal);
+  list-style: none;
+  background-color: var(--bgColor-default);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+}
+
+.List-item {
+  position: relative;
+  display: block;
+  padding: var(--control-medium-paddingInline-condensed) var(--control-medium-paddingInline-spacious);
+  color: var(--fgColor-default);
+  border-bottom: var(--borderWidth-thin) solid var(--borderColor-default);
+
+  &:first-child {
+    border-top: 0;
+    border-top-left-radius: var(--borderRadius-medium);
+    border-top-right-radius: var(--borderRadius-medium);
+
+    &::before {
+      border-top-left-radius: var(--borderRadius-medium);
+    }
+  }
+
+  &:last-child {
+    border-bottom: 0;
+    border-bottom-right-radius: var(--borderRadius-medium);
+    border-bottom-left-radius: var(--borderRadius-medium);
+
+    &::before {
+      border-bottom-left-radius: var(--borderRadius-medium);
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.List-heading {
+  display: block;
+  padding: var(--control-medium-paddingInline-condensed) var(--control-medium-paddingInline-spacious);
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: inherit;
+  font-weight: var(--base-text-weight-semibold);
+  color: var(--fgColor-default);
+  border-bottom: var(--borderWidth-thin) solid var(--borderColor-default);
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:first-child {
+    border-top-left-radius: var(--borderRadius-medium);
+    border-top-right-radius: var(--borderRadius-medium);
+  }
+
+  &:last-child {
+    border-bottom: 0;
+    border-bottom-right-radius: var(--borderRadius-medium);
+    border-bottom-left-radius: var(--borderRadius-medium);
+  }
+}

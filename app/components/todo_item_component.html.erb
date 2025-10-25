@@ -1,10 +1,23 @@
-<% if @editing %>
-  <%= form_with(model: [@todo_item.todo_list, @todo_item], rerender: :self) do |f| %>
-    <%= f.text_field :text %>
-    <%= f.submit %>
+<%= render(Primer::Alpha::Stack.new(direction: :horizontal, align: :center, justify: :space_between)) do %>
+  <% if @editing %>
+    <%= form_with(model: [@todo_item.todo_list, @todo_item], rerender: :self) do |f| %>
+      <%= render(Primer::Alpha::Stack.new(direction: :horizontal)) do %>
+        <%= f.text_field :text, class: "FormControl-input FormControl-medium" %>
+        <%= f.submit class: "Button Button--secondary" %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= @todo_item.text %>
+    <%= render(Primer::Alpha::Stack.new(direction: :horizontal, gap: :condensed)) do %>
+      <%= button_tag "Edit", data: { action: "click->todoitemcomponent#edit" }, class: "Button Button--secondary" %>
+      <%= button_to(
+        "Delete",
+        todo_list_todo_item_path(@todo_item.todo_list_id, @todo_item),
+        rerender: :parent,
+        form: { data: { turbo: true, turbo_stream: true } },
+        method: :delete,
+        class: "Button Button--secondary"
+      ) %>
+    <% end %>
   <% end %>
-<% else %>
-  <%= @todo_item.text %>
-  <%= button_tag "Edit", data: { action: "click->todoitemcomponent#edit" } %>
-  <%= button_to "Delete", todo_list_todo_item_path(@todo_item.todo_list_id, @todo_item), rerender: :parent, form: { data: { turbo: true, turbo_stream: true } }, method: :delete %>
 <% end %>

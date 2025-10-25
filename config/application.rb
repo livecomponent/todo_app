@@ -2,6 +2,7 @@ require_relative "boot"
 
 require "wasmify/rails/shim"
 
+require "live_component/middleware"
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -25,5 +26,13 @@ module TodoApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.assets.paths << Rails.root.join("node_modules")
+
+    # do this here instead because wasmify-rails seems to ignore config.ru
+    config.middleware.insert_before 0, LiveComponent::Middleware
   end
 end
+
+require "view_component"
+require "primer/view_components"

@@ -26,7 +26,16 @@
     <%= vite_typescript_tag "application" %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body data-color-mode="dark" data-light-theme="light" data-dark-theme="dark">
+    <div class="border-bottom color-border-default">
+      <%= render(Primer::Alpha::Stack.new(align: :center, justify: :space_between, direction: :horizontal, classes: "container-lg", mt: 4, mb: 4)) do %>
+        <%= link_to root_path do %>
+          <%= render(Logo.new(style: "width: 150px")) %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= render(Primer::Alpha::Stack.new(classes: "container-lg mt-3")) do %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

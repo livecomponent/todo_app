@@ -14,7 +14,7 @@ git pull origin refs/heads/gh-pages
 # docs is the only allowed directory (aside from the root) for GitHub Pages
 rm -rf docs
 mkdir docs
-echo "todo-app.livecomponent.org" > CNAME
+echo "todo-app.livecomponent.org" > docs/CNAME
 cp -R pwa/dist/ ./docs/
 git add -A docs
 git commit -m "Release"

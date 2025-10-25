@@ -5,6 +5,7 @@ class TodoListsController < ApplicationController
   end
 
   def index
+    @todo_lists = TodoList.all
   end
 
   def create

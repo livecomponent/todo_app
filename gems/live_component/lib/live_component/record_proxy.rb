@@ -77,5 +77,9 @@ module LiveComponent
     def to_param
       id.to_s
     end
+
+    def persisted?
+      true
+    end
   end
 end

@@ -1,4 +1,12 @@
-<%= form_with(model: TodoList.new) do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
-<% end %>
+<h1 class="f2">Create new todo list</h1>
+<div style="width: 250px">
+  <%= form_with(model: TodoList.new) do |f| %>
+    <%= render(Primer::Alpha::Stack.new) do %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "FormControl-input FormControl-medium" %>
+      <div>
+        <%= f.submit(class: "Button Button--primary") %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
