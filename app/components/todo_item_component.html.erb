@@ -1,0 +1,10 @@
+<% if @editing %>
+  <%= form_with(model: [@todo_item.todo_list, @todo_item], rerender: :self) do |f| %>
+    <%= f.text_field :text %>
+    <%= f.submit %>
+  <% end %>
+<% else %>
+  <%= @todo_item.text %>
+  <%= button_tag "Edit", data: { action: "click->todoitemcomponent#edit" } %>
+  <%= button_to "Delete", todo_list_todo_item_path(@todo_item.todo_list_id, @todo_item), rerender: :parent, form: { data: { turbo: true, turbo_stream: true } }, method: :delete %>
+<% end %>
