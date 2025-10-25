@@ -1,0 +1,10 @@
+<h1><%= @todo_list.name %></h1>
+<ul>
+  <% todo_items.each do |todo_item| %>
+    <li><%= todo_item %></li>
+  <% end %>
+</ul>
+<%= form_with(model: [@todo_list, @todo_list.todo_items.build], rerender: :self) do |f| %>
+  <%= f.text_field :text %>
+  <%= f.submit "Add todo item" %>
+<% end %>
