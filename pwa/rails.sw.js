@@ -32,7 +32,7 @@ const initVM = async (progress, opts = {}) => {
 
   let redirectConsole = true;
 
-  vm = await initRailsVM("https://live-component-todo-app.us-lax-1.linodeobjects.com/app.wasm", {
+  vm = await initRailsVM("/app.wasm", {
     database: { adapter: "sqlite3_wasm" },
     progressCallback: (step) => {
       progress?.updateStep(step);

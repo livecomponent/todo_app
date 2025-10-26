@@ -1,0 +1,77 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    # Specify runner +  build & upload the static files as an artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install @camertron@live-component deps
+        run: |
+          cd packages/@camertron/live-component
+          npm install
+      - name: Install wasi-vfs
+        run: |
+          export WASI_VFS_VERSION=0.5.5
+          curl -LO "https://github.com/kateinoigakukun/wasi-vfs/releases/download/v${WASI_VFS_VERSION}/wasi-vfs-cli-x86_64-unknown-linux-gnu.zip"
+          unzip wasi-vfs-cli-x86_64-unknown-linux-gnu.zip
+          mv wasi-vfs /usr/local/bin/wasi-vfs
+
+      - name: Cache WASM Rubies
+        id: cache-rubies
+        uses: actions/cache@v4
+        with:
+          path: rubies
+          key: ${{ runner.os }}-rubies
+      - name: Cache WASM Build
+        id: cache-build
+        uses: actions/cache@v4
+        with:
+          path: build
+          key: ${{ runner.os }}-build
+      - name: Build WASM Core
+        id: build-core
+        run: |
+          bin/rails wasmify:build:core
+          bin/rails wasmify:pack:core
+
+      - name: Build Site
+        run: |
+          bin/rails wasmify:pack
+
+          pushd pwa
+          yarn install
+          yarn build
+
+          echo "todo-app.livecomponent.org" > dist/CNAME
+          popd
+
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pwa/dist/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
