@@ -62,7 +62,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "view_component", "~> 4.0", group: [:default, :wasm]
+gem "view_component", "~> 4.1", group: [:default, :wasm]
 gem "primer_view_components", "~> 0.44", group: [:default, :wasm]
 # gem "live_component", path: "~/workspace/camertron/live_component/testapp/lib/gems/live_component", group: [:default, :wasm]
 gem "live_component", path: "gems/live_component", group: [:default, :wasm]
