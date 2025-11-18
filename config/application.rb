@@ -27,7 +27,7 @@ module TodoApp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.assets.paths << Rails.root.join("node_modules")
+    # config.assets.paths << Rails.root.join("node_modules")
 
     # do this here instead because wasmify-rails seems to ignore config.ru
     config.middleware.insert_before 0, LiveComponent::Middleware
