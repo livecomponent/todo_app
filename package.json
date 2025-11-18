@@ -6,7 +6,8 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2",
-    "@hotwired/turbo-rails": "^8.0"
+    "@hotwired/turbo-rails": "^8.0",
+    "@camertron/live-component": "^0.1.0"
   },
   "devDependencies": {
     "vite": "~7.1",

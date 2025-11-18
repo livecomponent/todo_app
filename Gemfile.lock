@@ -1,11 +1,3 @@
-PATH
-  remote: gems/live_component
-  specs:
-    live_component (1.0.0)
-      railties (~> 8.0)
-      use_context (~> 1.2)
-      view_component (~> 4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -149,6 +141,11 @@ GEM
       zeitwerk (>= 2.6.18, < 3.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
+    live_component (0.1.0)
+      railties (~> 8.0)
+      use_context (~> 1.2)
+      view_component (~> 4.0)
+      weak_key_map (~> 1.0)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
@@ -368,6 +365,7 @@ GEM
       js (>= 2.6, < 3.0)
       railties (>= 7.0, < 9.0)
       ruby_wasm (>= 2.6, < 3.0)
+    weak_key_map (1.0.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -385,6 +383,7 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin-23
+  arm64-darwin-25
   x86_64-linux
 
 DEPENDENCIES
@@ -395,7 +394,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kamal
-  live_component!
+  live_component (~> 0.1)
   primer_view_components (~> 0.44)
   propshaft
   puma (>= 5.0)

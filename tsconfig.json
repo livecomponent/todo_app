@@ -8,7 +8,7 @@
     "module": "es2022",
     "moduleResolution": "bundler",
     "paths": {
-      "@camertron/live-component": ["/Users/camertron/workspace/camertron/live_component/testapp/app/javascript/@camertron/live-component"],
+      // "@camertron/live-component": ["/Users/camertron/workspace/camertron/live_component/testapp/app/javascript/@camertron/live-component"],
       "app/components": ["app/components"]
     }
   }

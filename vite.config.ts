@@ -11,7 +11,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@camertron/live-component": path.resolve(__dirname, "packages/@camertron/live-component"),
+      // "@camertron/live-component": path.resolve(__dirname, "packages/@camertron/live-component"),
       "app/components": path.resolve(__dirname, "app/components"),
     },
   },

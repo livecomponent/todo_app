@@ -9,7 +9,7 @@ class TodoItemsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: live.rerender(todo_item: @todo_item, editing: false)
       end
-    end
+  end
   end
 
   def create
