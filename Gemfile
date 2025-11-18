@@ -62,7 +62,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "view_component", "~> 4.0", group: [:default, :wasm]
+gem "view_component", "~> 4.1", group: [:default, :wasm]
 gem "primer_view_components", "~> 0.44", group: [:default, :wasm]
 gem "live_component", "~> 0.1", group: [:default, :wasm]
 gem "vite_rails", "~> 3.0", group: [:default, :wasm]
